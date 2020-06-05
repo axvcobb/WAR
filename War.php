@@ -50,16 +50,24 @@ while(count($playerOneDeck) > 0 && count($playerTwoDeck) > 0) {
     echo "WAR\n";
 
     if($playerOneCount < 4 && $playerOneCount != 0) {
+
       $playerOneSacrifice = array_splice($playerOneDeck, 0, count($playerOneDeck)-1);
       $playerTwoSacrifice = array_splice($playerTwoDeck, 0, 3);
+
     }elseif($playerTwoCount < 4 && $playerTwoCount != 0){
+
       $playerOneSacrifice = array_splice($playerOneDeck, 0, 3);
       $playerTwoSacrifice = array_splice($playerTwoDeck, 0, count($playerTwoDeck)-1);
+
     }elseif($playerOneCount >= 4 && $playerTwoCount >= 4){
+
       $playerOneSacrifice = array_splice($playerOneDeck, 0, 3);
       $playerTwoSacrifice = array_splice($playerTwoDeck, 0, 3);
+
     }else{
+
       break 2;
+      
     }
 
     $playerOneDraw = Deck::drawCard($playerOneDeck);
@@ -78,13 +86,17 @@ while(count($playerOneDeck) > 0 && count($playerTwoDeck) > 0) {
     echo "Player Two's Champion is the " . $playerTwoCard->getRankName() . " of " . $playerTwoCard->getSuit() . "\n";
 
     if($playerOneCard->getRank() > $playerTwoCard->getRank()){
+
       $playerOneDeck = array_merge($playerOneDeck, $upForGrabs);
       array_push($playerOneDeck, $playerOneCard, $playerTwoCard);
       echo "Player One wins this round of WAR!\n";
+
     }elseif($playerOneCard->getRank() < $playerTwoCard->getRank()){
+
       $playerTwoDeck = array_merge($playerTwoDeck, $upForGrabs);
       array_push($playerTwoDeck, $playerTwoCard, $playerOneCard);
       echo "Player Two wins this round of WAR!\n";
+
     }
 
   }
